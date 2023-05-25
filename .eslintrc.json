@@ -24,6 +24,7 @@
     "react/react-in-jsx-scope": 0,
     "no-console": 0,
     "react/jsx-filename-extension": [1, { "allow": "as-needed" }],
-    "react/button-has-type": 1
+    "react/button-has-type": 1,
+    "arrow-body-style": 0
   }
 }
