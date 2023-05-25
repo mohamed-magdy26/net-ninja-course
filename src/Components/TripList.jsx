@@ -4,11 +4,12 @@ import './TripList.css';
 
 function TripList() {
   const [url, setUrl] = useState('http://localhost:8000/trips');
-  const { data: trips } = useFetch(url);
+  const { data: trips, isPending } = useFetch(url);
 
   return (
     <div className="trip-list">
       <h2>Trip List</h2>
+      {isPending && <p>Loading Trips....</p>}
       <ul>
         {trips &&
           trips.map((trip) => (
