@@ -1,15 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import './TripList.css';
 
 function TripList() {
   const [url, setUrl] = useState('http://localhost:8000/trips');
-
-  const options = { type: 'Get' };
-
-  // const options = useMemo(() => ({ type: 'hello' }), []);
-
-  const { data: trips, isPending, error } = useFetch(url, options);
+  const { data: trips, isPending, error } = useFetch(url);
 
   return (
     <div className="trip-list">
