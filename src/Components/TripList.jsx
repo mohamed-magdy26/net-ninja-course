@@ -4,11 +4,15 @@ import './TripList.css';
 
 function TripList() {
   const [url, setUrl] = useState('http://localhost:8000/trips');
-  const { data: trips, isPending } = useFetch(url);
+  const { data: trips, isPending, error } = useFetch(url);
+  console.log(trips);
+  console.log(isPending);
+  console.log(error);
 
   return (
     <div className="trip-list">
       <h2>Trip List</h2>
+      {error && <p>{error}</p>}
       {isPending && <p>Loading Trips....</p>}
       <ul>
         {trips &&
@@ -19,6 +23,7 @@ function TripList() {
             </li>
           ))}
       </ul>
+
       <div className="filters">
         <button
           type="button"
