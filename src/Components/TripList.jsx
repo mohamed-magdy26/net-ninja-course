@@ -5,9 +5,6 @@ import './TripList.css';
 function TripList() {
   const [url, setUrl] = useState('http://localhost:8000/trips');
   const { data: trips, isPending, error } = useFetch(url);
-  console.log(trips);
-  console.log(isPending);
-  console.log(error);
 
   return (
     <div className="trip-list">

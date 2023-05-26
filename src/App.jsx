@@ -1,9 +1,17 @@
+import { useState } from 'react';
 import TripList from './Components/TripList';
 
 function App() {
+  const [showTripList, setShowTripList] = useState(true);
   return (
     <div className="app">
-      <TripList />
+      <button
+        type="button"
+        onClick={() => setShowTripList(false)}
+      >
+        Hide Trips
+      </button>
+      {showTripList && <TripList />}
     </div>
   );
 }

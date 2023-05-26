@@ -6,10 +6,13 @@ const useFetch = (url) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchData = async () => {
       setIsPending(true);
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+          signal: controller.signal,
+        });
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -18,13 +21,21 @@ const useFetch = (url) => {
         setIsPending(false);
         setError(null);
       } catch (err) {
-        setIsPending(false);
-        setError(err.message);
-        console.log(err.message);
+        if (err.name === 'AbortError') {
+          console.log('Fetch was aborted');
+        } else {
+          setIsPending(false);
+          setError(err.message);
+          console.log(err.message);
+        }
       }
     };
 
     fetchData();
+
+    return () => {
+      controller.abort();
+    };
   }, [url]);
 
   return { data, isPending, error };
