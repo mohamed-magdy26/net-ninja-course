@@ -5,6 +5,8 @@ const useFetch = (url, _options) => {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
+  // wrapping passed object/array by useRef
+  // which is a useEffect dependancy
   const options = useRef(_options).current;
 
   useEffect(() => {
